@@ -21,11 +21,11 @@ sample = [
 ]
 
 def consolidate_cart(item)
-  final = Hash.new 0 
+  final = Hash.new 0
   count = :count
 item.each do |hash|
   hash.each do |food, description|
-  
+
 if final.has_key?(food) == false
   final[food] = description
   final[food][count] = 1
@@ -44,11 +44,11 @@ consolidate_cart(sample)
 coupon = {:item => "AVOCADO", :num => 2, :cost => 5.0}
 
 # def apply_coupons(cart, coupons)
-#   final = Hash.new 0 
+#   final = Hash.new 0
 # coupons.each do |key, value|
 #   puts key
 #   cart.each do |food, description|
- 
+
 # end
 # end
 
@@ -66,7 +66,7 @@ coupon = {:item => "AVOCADO", :num => 2, :cost => 5.0}
 #       puts cart.has_key?(new_item)
 #       if cart.has_key?(new_item) == false
 #         cart[new_item] = {:price => item[:cost], :clearance => cart[name_of_item][:clearance], :count => 1}
-#       else 
+#       else
 #         cart[new_item][:count] += 1
 #       end
 #     end
@@ -79,7 +79,7 @@ coupon = {:item => "AVOCADO", :num => 2, :cost => 5.0}
 
 def apply_clearance(cart)
 
- 
+
   cart.each do |item, details|
     if cart[item][:clearance] == true
       cart[item][:price] = (cart[item][:price]*0.20 - total)
@@ -105,7 +105,7 @@ def checkout(cart: [], coupons: [])
   # code here
   total = 0
   cart = consolidate_cart(cart)
-  
+
   if cart.length == 1
     cart = apply_coupons(cart, coupons)
     cart_clearance = apply_clearance(cart)
@@ -127,7 +127,7 @@ def checkout(cart: [], coupons: [])
       total += (details[:price]*details[:count])
     end
   end
-  
+
 
   if total > 100
     total = total*(0.90)
@@ -141,5 +141,3 @@ end
 #   "KALE"    => {:price => 3.0, :clearance => false, :count => 1},
 #   "AVOCADO W/COUPON" => {:price => 5.0, :clearance => true, :count => 1},
 # }
-
-
